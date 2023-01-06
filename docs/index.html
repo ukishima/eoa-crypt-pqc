@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <title>ヘルプページ | EOA Crypt - tw3h</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="Example EOA Crypt implementation for tw3h."
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzAwIDMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNDcgNDdDNDcgNDEuNDc3MiA1MS40NzcyIDM3IDU3IDM3SDE1Ny41QzIwNy4xMzYgMzcgMjQ5LjEyOCA2OS44ODcyIDI2My4wNzUgMTE1SDIyMi4yODlDMjEwLjA1MiA5Mi41OTIxIDE4Ni4yNzMgNzcuMzkxNiAxNTguOTQyIDc3LjM5MTZDMTE5LjEwNyA3Ny4zOTE2IDg2LjgxNDUgMTA5LjY4NCA4Ni44MTQ1IDE0OS41MkM4Ni44MTQ1IDE4OS4zNTUgMTE5LjEwNyAyMjEuNjQ3IDE1OC45NDIgMjIxLjY0N0MxODIuODk2IDIyMS42NDcgMjA0LjEyMiAyMDkuOTcxIDIxNy4yNCAxOTJIMjU4Ljc1M0MyNDEuNzI4IDIzMC44MTIgMjAzLjAxNSAyNTggMTU3Ljk4MyAyNThDOTYuNjg4NiAyNTggNDcgMjA4LjMxMSA0NyAxNDcuMDE3VjQ3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTEwOCAxMzZIMjYzVjE3MkgxNDRDMTI0LjExOCAxNzIgMTA4IDE1NS44ODIgMTA4IDEzNlYxMzZaIiBmaWxsPSJ3aGl0ZSIvPgo8Y2lyY2xlIGN4PSI4Mi41IiBjeT0iNzMuNSIgcj0iMTguNSIgZmlsbD0iYmxhY2siLz4KPGNpcmNsZSBjeD0iODIuNSIgY3k9IjczLjUiIHI9IjE4LjUiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPg=="
+    />
+    <!-- ogp start -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ヘルプページ | EOA Crypt - tw3h" />
+    <meta
+      property="og:description"
+      content="Help | Example EOA Crypt implementation for tw3h."
+    />
+    <meta property="og:site_name" content="EOA Crypt - tw3h" />
+    <meta
+      property="og:image"
+      content="https://bafybeibk4stvuwyyr2iexsy7icp6dddz4dudbqybz22z6r6tmrdsdsyucy.ipfs.w3s.link/logo.png"
+    />
+    <!-- //ogp end -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css"
+    />
+    <link href="https://fonts.cdnfonts.com/css/alata" rel="stylesheet">
+          
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
+      @import url('https://fonts.cdnfonts.com/css/alata');
+
+      @font-face {
+        font-family: 'Alata';
+        src: url('https://fonts.cdnfonts.com/css/alata');
+      }
+
+      html, button, h1 {
+        font-size: 62.5%;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-weight: 700;
+        font-family: 'Alata';
+        font-feature-settings: "palt";
+      }
+      :focus {
+       outline: none;
+      }
+      a:link,
+      a:visited {
+        color: #ffffff;
+      }
+      a:hover {
+        font-size: 101%;
+      }
+      ::-webkit-scrollbar {
+        width: 16px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: #202225;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #828282;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #828282;
+        cursor: pointer;
+      }
+      #editor::-webkit-scrollbar  {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #5E5E5E;
+        border-radius: 6px;
+      }
+      
+      #logs::-webkit-scrollbar  {
+        width: 12px;
+      }
+      #logs::-webkit-scrollbar-track {
+        background-color: #131313;
+      }
+
+      body {
+        width: 100%;
+        margin: 0;
+        padding-top: 98px;
+        font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont,
+          "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3",
+          Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "palt";
+        font-weight: 700;
+        font-size: 1.6rem;
+        line-height: 1em;
+        letter-spacing: 0.05em;
+        background-color: #04111d;
+      }
+      #content_wrapper {
+        height: 100vh;
+      }
+
+      header {
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+        height: 98px;
+        background-color: rgba(32, 34, 37, 0.9);
+        color: #e5e5e5;
+      }
+      header .header_inner {
+        position: relative;
+        margin: 0 auto;
+        padding: 2rem;
+        max-width: 1310px;
+      }
+      header .logo_wrapper {
+        position: absolute;
+        height: 5.2rem;
+        top : 2rem;
+        left: 1.6rem;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyAgdmlld0JveD0iMCAwIDc1IDc2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMuNDU2MjIgMEMxLjU0NzQgMCAwIDEuNTM5NjUgMCAzLjQzODkxVjM3LjgzMzlDMCA1OC45MTI0IDE3LjE3MzUgNzYgMzguMzU4MiA3NkM1My45MjIyIDc2IDY3LjMwMjMgNjYuNjUwMyA3My4xODY1IDUzLjMwMzJINTguODM4N0M1NC4zMDQ4IDU5LjQ4MzIgNDYuOTY4NyA2My40OTg1IDM4LjY4OTYgNjMuNDk4NUMyNC45MjE4IDYzLjQ5ODUgMTMuNzYwOCA1Mi4zOTM2IDEzLjc2MDggMzguNjk0N0MxMy43NjA4IDI0Ljk5NTUgMjQuOTIxOCAxMy44OTAzIDM4LjY4OTYgMTMuODkwM0M0OC4xMzU4IDEzLjg5MDMgNTYuMzU0NCAxOS4xMTc2IDYwLjU4MzggMjYuODIzNUg3NC42ODAzQzY5Ljg1OTkgMTEuMzA5NiA1NS4zNDY1IDAgMzguMTkxMiAwSDMuNDU2MjJaTTc0LjY1NDQgMzQuMDQ1MkgyMS4wODI5QzIxLjA4MjkgNDAuODgyNSAyNi42NTM2IDQ2LjQyNTMgMzMuNTI1MyA0Ni40MjUzSDc0LjY1NDRWMzQuMDQ1MlpNMTguNjYzNiAxMi41NTIxQzE4LjY2MzYgMTYuMDY1NyAxNS44MDA5IDE4LjkxNCAxMi4yNjk2IDE4LjkxNEM4LjczODI4IDE4LjkxNCA1Ljg3NTU4IDE2LjA2NTcgNS44NzU1OCAxMi41NTIxQzUuODc1NTggOS4wMzg0MiA4LjczODI4IDYuMTkwMDYgMTIuMjY5NiA2LjE5MDA2QzE1LjgwMDkgNi4xOTAwNiAxOC42NjM2IDkuMDM4NDIgMTguNjYzNiAxMi41NTIxWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==");
+        background-repeat: no-repeat;
+        background-size: 5.2rem;
+      }
+      header .logo_wrapper .logo {
+        margin-top: 0.8rem;
+        padding: 0 0 0 6.4rem;
+        letter-spacing: 2px;
+        vertical-align: top;
+        font-size: 2.8rem;
+        font-family: 'Alata', sans-serif;
+      }
+      header .logo_wrapper p {
+        padding-left: 6.4rem;
+        margin-top: 1.4rem;
+        letter-spacing: 0px;
+        font-kerning: normal;
+        color: #FF4E4E;
+        font-size: 1rem;
+        font-weight: 400;
+        font-family: 'Alata', sans-serif;
+      }
+      header .logo_wrapper p span {
+        display: none;
+      }
+      main {
+        background-color: #202225;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        color: #e5e5e5;
+      }
+      main .main_inner {
+        max-width: 1136px;
+        margin: 0 auto;
+        padding: 0.6rem 1rem;
+      }
+      footer {
+        margin: 0 auto;
+        padding: 4rem 0 10rem;
+        width: 100%;
+        background-color: #04111d;
+        color: #e5e5e5;
+      }
+      footer .footer_inner {
+        position: relative;
+        text-align: center;
+        max-width: 1136px;
+        margin: 0 auto;
+        padding: 4rem 1rem;
+      }
+      footer .logo {
+        margin: 0;
+        padding: 0 0 0 64px;
+        height: 48px;
+        line-height: 48px;
+        font-size: 2.8rem;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA0OCI+PHBhdGggZD0iTTAgNS43ODMxM0MwIDIuNTg5MiAyLjU4OTIgMCA1Ljc4MzEzIDBIMjRDMzcuMjU0OCAwIDQ4IDEwLjc0NTIgNDggMjRDNDggMzcuMjU0OCAzNy4yNTQ4IDQ4IDI0IDQ4QzEwLjc0NTIgNDggMCAzNy4yNTQ4IDAgMjRWNS43ODMxM1oiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMjQuMzEzMyIgY3k9IjI0LjQzODYiIHI9IjE1LjY2NTgiIGZpbGw9IiMyMDIyMjUiLz48cGF0aCBkPSJNMTEuODg1NyAyMS4yNTcxQzExLjg4NTcgMjAuMTIxIDEyLjgwNjggMTkuMiAxMy45NDI5IDE5LjJINDYuMTcxNVYzMS41NDI5SDIyLjE3MTVDMTYuNDkwOCAzMS41NDI5IDExLjg4NTcgMjYuOTM3OCAxMS44ODU3IDIxLjI1NzFaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMjAyMjI1IiBzdHJva2Utd2lkdGg9IjYiLz48L3N2Zz4=");
+        background-repeat: no-repeat;
+      }
+      footer .help {
+        line-height: 48px;
+        font-size: 1.8rem;
+      }
+      footer .help a {
+        text-decoration: none;
+      }
+      footer .help a:hover {
+        font-size: inherit;
+        transition-duration: 0.5s;
+        color: #aaa;
+      }
+
+      .content_box {
+        margin: 0 1.6rem 4rem;
+        padding: 2.2rem 2rem 1rem;
+        background-color: #262b2f;
+        border-radius: 20px;
+      }
+      .content_box h2 {
+        margin-bottom: 4rem;
+        padding: 0 0 1rem 1.6rem;
+        line-height: 3.2rem;
+        font-size: 2.2rem;
+        border-left: 5px solid #fff;
+        border-bottom: 1px solid #fff;
+      }
+      p.warning {
+        margin: 1rem 0 1.6rem 0;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 2.2rem;
+        color: #fd7122;
+      }
+
+      .connect_button_wrapper {
+        position: absolute;
+        top: 2.2rem;
+        right: 1.8rem;
+      }
+      #connectButton {
+        width: 189px;
+        height: 48px;
+        padding-bottom: 4px;
+        font-family: 'Alata', sans-serif;
+        font-size: 1.9rem;
+        font-weight: 400;
+        color: #ffffff;
+        background: linear-gradient(266.08deg, #ED23A8 4.27%, #1400F4 100%);
+        border: 3px solid #FFFFFF;
+        border-radius: 17px;
+      }
+      #connectButton:hover {
+        transition-duration: 0.5s;
+        cursor: pointer;
+        opacity: 0.7;
+      }
+      .page_title {
+        text-align: center;
+        margin: 2.6rem auto 4rem;
+      }
+      .page_title h2 {
+        display: inline;
+        font-size: 3rem;
+        padding-left: 64px;
+        background-size: 42px;
+        background-image: url("data:image/png;base64,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");
+        background-repeat: no-repeat;
+      }
+      .disclaimer {
+        text-align: center;
+        margin: 2rem 2rem 4rem;
+      }
+      .disclaimer ul {
+        text-align: left;
+        color: #ff2e2e;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 2.8rem;
+      }
+      
+      dl {
+
+      }
+      dt {
+        margin: 3rem 0 2.8rem 2rem;
+        padding: 0 0 1.1rem 0.2rem;
+        line-height: 2.8rem;
+        font-size: 1.9rem;
+        border-bottom: 1px solid #666;
+      }
+      dd {
+        margin: 2rem 0 5rem 2rem;
+      }
+      dd img {
+        width: 100%;
+      }
+      dl dd ul {
+        margin: 2.4rem 0 0;
+        padding: 0 0 0 2.2rem;
+      }
+      dl dd ul li {
+        list-style: square;
+        margin: 0 0 1.4rem 0;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+      }
+
+      dl dd ul li ol {
+        padding: 0 0 0 2.2rem;
+      }
+      dl dd ul li ol li{
+        list-style: decimal;
+        margin: 0 0 0 0;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 2.4rem;
+      }
+
+
+      dl dd > ol {
+        margin: 2rem 0 0 0;
+        padding: 0 0 0 2.6rem;
+        line-height: 1.5rem;
+        /*        margin: 0;
+        padding: 0;*/
+      }
+
+      dl dd ol li {
+        margin: 1.4rem 0 1.4rem 0;
+        line-height: 2.6rem;
+      }
+
+      .callout {
+        margin: 3rem 0 1rem;
+        padding: 2rem 3rem 3rem;
+        font-size: 1.8rem;
+        font-weight: 500;
+        border: 1px solid #666;
+        border-radius: 16px;
+      }
+      .callout ul {
+        margin: 0 0 0 2rem;
+      }
+      .callout ul li {
+        list-style: circle; 
+        margin: 0;
+        line-height: 3rem;
+      }
+      .callout h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+      }
+      dl.usecase {
+      }
+      dl.usecase dt {
+        margin: 0 0 1rem 0;
+        padding: 0;
+        font-size: 1.6rem;
+        border: none;
+      }
+      dl.usecase dd {
+        margin: 0;
+      }
+      dl.usecase dd span {
+        display: inline-block;
+        margin: 0 0.8rem;
+        padding: 1rem 1.6rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        /*background-color: #383d41;*/
+        border: 1px solid #666;
+        border-radius: 10px;
+      }
+      
+      @media (min-width: 390px) {
+        #accountDiv {
+          padding: 6px 10px;
+          line-height: 2.4rem;
+          font-size: 1.4rem;
+        }
+      }
+      @media (min-width: 768px) {
+        header .logo_wrapper .logo {
+          padding: 0 0 0 7.6rem;
+        }
+        header .logo_wrapper p {
+          padding: 0 0 0 7.6rem;
+        }
+        header .logo_wrapper p span {
+          display: inline;
+        }
+        header .account_wrapper {
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzkgMzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xNS43MTgzIDE1Ljk2NTNDMTUuNzE4MyAxNS4xOTAxIDE1LjA3NjggMTQuNTYyMiAxNC4yODYgMTQuNTYyMkMxMy40OTQ2IDE0LjU2MjIgMTIuODUzIDE1LjE5MDEgMTIuODUzIDE1Ljk2NTNDMTIuODUzIDE2Ljc0IDEzLjQ5NDYgMTcuMzY4NSAxNC4yODYgMTcuMzY4NUMxNS4wNzY4IDE3LjM2ODUgMTUuNzE4MyAxNi43NCAxNS43MTgzIDE1Ljk2NTNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjQuODg3NCAxNC41NjIyQzI0LjA5NiAxNC41NjIyIDIzLjQ1NTEgMTUuMTkwMSAyMy40NTUxIDE1Ljk2NTNDMjMuNDU1MSAxNi43NCAyNC4wOTYgMTcuMzY4NSAyNC44ODc0IDE3LjM2ODVDMjUuNjc4MiAxNy4zNjg1IDI2LjMxOTggMTYuNzQgMjYuMzE5OCAxNS45NjUzQzI2LjMxOTggMTUuMTkwMSAyNS42NzgyIDE0LjU2MjIgMjQuODg3NCAxNC41NjIyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTM3LjYzNjIgMTMuNTgxNkMzNi44NzExIDEyLjgzMDYgMzUuODI4NCAxMi4zNDMgMzQuNjc5MiAxMi4yNjIzQzMzLjk2MiA4Ljk2NjIzIDMyLjE3NDUgNi4wNTk0NCAyOS42NzM2IDMuOTI4OTNDMjYuOTQxMSAxLjYgMjMuMzYxMyAwLjE4NzE2MSAxOS40NTU0IDAuMTg3NzU2QzE1LjU1NDYgMC4xODcxNjEgMTEuOTc5NyAxLjU5NTc2IDkuMjQ4MyAzLjkxOTI3QzYuNzM0NzMgNi4wNTU3MiA0LjkzOTM4IDguOTc1OTYgNC4yMjU0MSAxMi4yODg3QzMuMTgyNyAxMi40MjE1IDIuMjQyMDcgMTIuODg5OCAxLjUzNzEyIDEzLjU4MTZDMC42OTYwNTkgMTQuNDA0MSAwLjE3MjUwNyAxNS41NTA4IDAuMTczMzQxIDE2LjgwNzJDMC4xNzI1MDcgMTguMDYzIDAuNjk2MDU5IDE5LjIxMDggMS41MzcxMiAyMC4wMzIzQzIuMzc2MyAyMC44NTY0IDMuNTQ3MzkgMjEuMzY4NyA0LjgyOTY1IDIxLjM2ODJDNC45MjA1IDIxLjM2ODIgNS4wMDYxMSAyMS4zNTUzIDUuMDk1MDcgMjEuMzQ5OUM2LjIxNTk2IDIzLjk2NTQgOC4wNDkyMyAyNi4yMTIxIDEwLjM2NzkgMjcuODQ2OUMxMi45MjM2IDI5LjY1IDE2LjA2NzIgMzAuNzEyOCAxOS40NTU1IDMwLjcxMjNDMjIuODU3NiAzMC43MTI4IDI2LjAxNDMgMjkuNjM5OCAyOC41NzU1IDI3LjgyMzJDMzAuODgyNyAyNi4xODczIDMyLjcwNzQgMjMuOTQ0NCAzMy44MjIgMjEuMzM1NEMzMy45OTMzIDIxLjM1NDggMzQuMTY2NyAyMS4zNjgyIDM0LjM0MzkgMjEuMzY4MkMzNS42MjYgMjEuMzY4NyAzNi43OTcxIDIwLjg1NjQgMzcuNjM2MiAyMC4wMzIzQzM4LjQ3NzUgMTkuMjEwOCAzOS4wMDA2IDE4LjA2MyAzOSAxNi44MDcyQzM5LjAwMDUgMTUuNTUwOCAzOC40Nzc0IDE0LjQwNDEgMzcuNjM2MiAxMy41ODE2Wk0yMS43NzEyIDIuNDk0MUMyMS44NDggMi41ODExNiAyMS45Mjc4IDIuNjc5NTkgMjIuMDA3NCAyLjc5NzMzQzIyLjM0NzYgMy4zMDE1OCAyMi42ODkgNC4wOTM5OSAyMi42OTE4IDUuMzQ3NzFDMjIuNjkxOCA2LjI5NDQgMjIuNDg2NSA3LjUxMTUgMjEuOTEzNiA5LjA0MDQ0QzIwLjEwNDUgNy42MTM2NCAxOS4wNjY0IDYuMjk4NjQgMTguNDgyIDUuMjE1NEMxNy44NDU5IDQuMDMzNzQgMTcuNzMxOCAzLjEyMDQgMTcuNzMwNiAyLjU5MTM0QzE3LjczMDYgMi41MjMwNyAxNy43MzQgMi40Njc3MyAxNy43MzcgMi40MTI4M0MxOC4zMDA5IDIuMzQxODkgMTguODcxNiAyLjI5MjkzIDE5LjQ1NTUgMi4yOTI5M0MyMC4yNDYzIDIuMjkzMDEgMjEuMDE4NyAyLjM2NTU5IDIxLjc3MTIgMi40OTQxWk0xNy4zNDE1IDUuODA1MTZDMTcuNjY3IDYuNDA4ODcgMTguMTExNSA3LjA1OTM5IDE4LjY5MDcgNy43MzgzNkMxOC4xMDk5IDcuNTA4MyAxNy41Mjc2IDcuMjkzMjQgMTYuOTgxIDcuMDY2MzhDMTYuMDQ2NCA2LjY4MDM5IDE1LjIyNTkgNi4yNDkyNCAxNC42NyA1LjY3NDU2QzE0LjM5MDEgNS4zODY0MSAxNC4xNzA2IDUuMDY0MzggMTQuMDE0NiA0LjY3NDZDMTMuODg2MyA0LjM1MTU0IDEzLjgwMzcgMy45NzQ2OSAxMy43Nzc5IDMuNTMwNjFDMTQuNjIxMyAzLjE0NDAyIDE1LjUxNCAyLjg0NzMzIDE2LjQ0MjMgMi42Mzg3M0MxNi40NDg2IDMuMzUzNzMgMTYuNjE5MyA0LjQ2NzEyIDE3LjM0MTUgNS44MDUxNlpNMzYuMTE2NSAxOC41NDM2QzM1LjY1OTQgMTguOTg5OCAzNS4wMzkyIDE5LjI2MjQgMzQuMzQzOSAxOS4yNjM1QzM0LjA1NTggMTkuMjYyOSAzMy43ODAzIDE5LjIxMyAzMy41MTM2IDE5LjEyMTZMMzIuNDk1NiAxOC43NzExTDMyLjE0MjIgMTkuNzY4OUMzMS4yMzAxIDIyLjMzOTIgMjkuNTI1NSAyNC41NTA5IDI3LjMxNTUgMjYuMTE4QzI1LjEwNDMgMjcuNjg0NiAyMi4zOTQ5IDI4LjYwNjUgMTkuNDU1NSAyOC42MDdDMTYuNTI3NiAyOC42MDY1IDEzLjgyOTggMjcuNjkyNiAxMS42MjM2IDI2LjEzODRDOS40MTgyNCAyNC41ODQyIDcuNzEyODMgMjIuMzg5MSA2Ljc5MTM4IDE5LjgzNjZMNi40NTgzMiAxOC45MTNMNS40OTQwMyAxOS4xNzI2QzUuMjczOTYgMTkuMjMxMiA1LjA1MzU5IDE5LjI2MzUgNC44Mjk3MyAxOS4yNjM1QzQuMTMzODggMTkuMjYyNCAzLjUxMzcyIDE4Ljk4OTkgMy4wNTY4MiAxOC41NDM3QzIuNjAxNiAxOC4wOTU4IDIuMzIzMzYgMTcuNDg4OSAyLjMyMjIzIDE2LjgwNzJDMi4zMjMyOSAxNi4xMjU2IDIuNjAxNiAxNS41MTg1IDMuMDU2ODIgMTUuMDcwMkMzLjUxMzcyIDE0LjYyNDUgNC4xMzM4MSAxNC4zNTE5IDQuODI5NzMgMTQuMzUxNEM0Ljg3MzYzIDE0LjM1MDkgNC45Mzg5MyAxNC4zNTQ3IDUuMDI5NDcgMTQuMzYxN0w2LjAyNjM3IDE0LjQzODVMNi4xNzU2MSAxMy40NjkzQzYuNjYyOTIgMTAuMzA3NiA4LjI5ODk0IDcuNTE0MjQgMTAuNjU3MSA1LjUwODk4QzExLjI0NjYgNS4wMDg1MiAxMS44Nzk5IDQuNTU3NDYgMTIuNTUxNiA0LjE2MTgxQzEyLjYwOTggNC41MTg3NSAxMi42OTkyIDQuODUzMTEgMTIuODI0NCA1LjE2MDY1QzEzLjAyMjQgNS42NDgyNiAxMy4zMDA3IDYuMDcwOCAxMy42Mjk0IDYuNDMxNTNDMTQuMjA2MiA3LjA2NDgyIDE0LjkyODQgNy41MTAwMSAxNS42ODE5IDcuODc1MDVDMTYuODEzNiA4LjQyMDE2IDE4LjAzNjMgOC43OTcwMSAxOS4wNjQyIDkuMjY2ODZDMTkuNTc3NCA5LjUwMDcxIDIwLjAzOTQgOS43NTQ0NyAyMC40MTkyIDEwLjA0NjlDMjAuNzk5NSAxMC4zNDEgMjEuMDk1OSAxMC42NjczIDIxLjMwNzEgMTEuMDYzNUMyMS40MjA3IDExLjI3OCAyMS42NDc0IDExLjQwOTIgMjEuODkzOCAxMS40MDM4QzIyLjE0MDggMTEuMzk3OSAyMi4zNjA4IDExLjI1NjUgMjIuNDY0NiAxMS4wMzY2QzIzLjU3ODYgOC42NzExNyAyMy45ODA5IDYuODA5OTQgMjMuOTgwOSA1LjM0NzcxQzIzLjk4MjUgNC4zNTc0IDIzLjc5MzUgMy41NTM3MSAyMy41MjY1IDIuOTIwOTRDMjUuMjg5MiAzLjQ3MDM2IDI2Ljg5NzcgNC4zNTUyNSAyOC4yNjMyIDUuNTE3NTJDMzAuNjIyNSA3LjUyODE0IDMyLjI1NjggMTAuMzI5NiAzMi43MzgxIDEzLjQ5NzdMMzIuODk2NyAxNC41NDM0TDMzLjk2MzYgMTQuMzgzN0MzNC4xMDUyIDE0LjM2MjcgMzQuMjMwMyAxNC4zNTE0IDM0LjM0MzkgMTQuMzUxNEMzNS4wMzkyIDE0LjM1MTkgMzUuNjU5NSAxNC42MjQ1IDM2LjExNjYgMTUuMDcwMkMzNi41NzIxIDE1LjUxODUgMzYuODUwNCAxNi4xMjU1IDM2Ljg1MSAxNi44MDcyQzM2Ljg1MDMgMTcuNDg4OSAzNi41NzIxIDE4LjA5NTggMzYuMTE2NSAxOC41NDM2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTIzLjE3NDEgMjEuMzE3NkMyMy4wMTMzIDIwLjk5NTEgMjIuOTY2MiAyMC43MTU1IDIyLjk2NTEgMjAuNDczNkMyMi45NjUxIDIwLjIzMjcgMjMuMDE2NiAyMC4wMjkgMjMuMDY2MSAxOS44OTEzQzIzLjA5MDcgMTkuODIyNSAyMy4xMTQzIDE5Ljc3MTQgMjMuMTI5OCAxOS43NDA4TDIzLjE0NTEgMTkuNzEyM0wyMy4xNDU2IDE5LjcxMDdMMjMuMTQzOSAxOS43MDk2QzIzLjM1MzkgMTkuMzY0NCAyMy4yNDQ0IDE4LjkxNzIgMjIuODk0MiAxOC43MDU5QzIyLjUzOTggMTguNDkzIDIyLjA3NyAxOC42MDA1IDIxLjg1OTIgMTguOTQ3M0MyMS44MzczIDE4Ljk4MjIgMjEuNzQwNyAxOS4xNDA4IDIxLjY0NjggMTkuNDAyNkMyMS41NTMgMTkuNjYzOSAyMS40NjE0IDIwLjAzMDUgMjEuNDYwOCAyMC40NzM1QzIxLjQ2MDIgMjAuNjU2MyAyMS40ODE4IDIwLjg1NDEgMjEuNTIwMSAyMS4wNTg0QzIxLjI2MDggMjEuMjkxOCAyMC45MjQzIDIxLjQ5ODIgMjAuNTI2MiAyMS42NDY2QzIwLjA4MTEgMjEuODEzMiAxOS41NjYzIDIxLjkwODkgMTkuMDI3OSAyMS45MDg5QzE4LjQ5MDEgMjEuOTA4OSAxNy45NzUzIDIxLjgxMzIgMTcuNTMwMiAyMS42NDY2QzE3LjA4NDYgMjEuNDgwNSAxNi43MDkzIDIxLjI0MzQgMTYuNDQyIDIwLjk3NDZDMTYuMTUxMSAyMC42ODQzIDE1LjY3NTMgMjAuNjc5NCAxNS4zNzc4IDIwLjk2NDNDMTUuMDgxNCAyMS4yNDg3IDE1LjA3NjUgMjEuNzE1MyAxNS4zNjc0IDIyLjAwNjJDMTUuODExOSAyMi40NDk4IDE2LjM3MDYgMjIuNzkgMTYuOTk0IDIzLjAyMzRDMTcuNjE4IDIzLjI1NjIgMTguMzA5IDIzLjM4MjUgMTkuMDI3OSAyMy4zODMxQzE5Ljc0NjggMjMuMzgyNSAyMC40Mzg5IDIzLjI1NjcgMjEuMDYyMyAyMy4wMjM0QzIxLjQ0NzkgMjIuODc5MyAyMS44MDQzIDIyLjY4OSAyMi4xMjgzIDIyLjQ2MzhDMjIuMzg3NyAyMi44MzI1IDIyLjcyNjYgMjMuMjAwMyAyMy4xNzEzIDIzLjU1NDZDMjMuNDk0IDIzLjgxMSAyMy45Njc2IDIzLjc2MjYgMjQuMjI5MyAyMy40NDcxQzI0LjQ5MTEgMjMuMTMxNSAyNC40NDIzIDIyLjY2NzUgMjQuMTIwMSAyMi40MTA2QzIzLjYxODEgMjIuMDEwNiAyMy4zMzY2IDIxLjYzOTEgMjMuMTc0MSAyMS4zMTc2WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==");
+          background-size: 42px;
+          background-repeat: no-repeat;
+          background-position: 0 50%;
+        } 
+        header .account_wrapper #accountDiv {
+          margin-left: 5.4rem;
+        }
+        .content_box {
+          margin: 0 auto 5rem;
+          padding: 4rem 3.2rem 1rem;
+        }
+        #connectButton {
+          width: 189px;
+          font-size: 2.2rem;
+        }
+        #accountDiv {
+          padding: 6px 16px;
+          line-height: 2.4rem;
+          font-size: 2rem;
+        }
+        dd img {
+          width: 80%;
+        }
+      }
+      @media (min-width: 1168px) {
+        body {
+          padding-top: 98px;
+        }
+        header {
+          height: 98px;
+        }
+        main .main_inner {
+          padding: 2rem 1rem;
+        }
+
+        .reciever_select_wrapper > label {
+          display: inline-block;
+          width: 24px;
+        }
+        #accountDiv {
+          line-height: 2.4rem;
+          margin-top: 0.4rem;
+          padding: 6px 16px;
+          font-size: 1.8rem;
+        }
+        .connect_button_wrapper {
+          top: 2.4rem;
+        }
+        dd img {
+          width: 70%;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="content_wrapper">
+
+      <header>
+        <div class="header_inner">
+          <div id="send">
+            <div class="top">
+              <div class="logo_wrapper">
+                <h1 class="logo">EOA Crypt</h1>
+                <p><span>Proof of Concept </span>for TokeyoWeb3Hackathon</p>
+              </div>
+              <div class="connect_button_wrapper">
+                <button id="connectButton">
+                  To The Dapps
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <article class="main_inner">
+
+          <div class="page_title"><h2>ヘルプページ</h2></div>
+          <div class="disclaimer">
+            <ul>
+              <li>
+                現在はPoC段階です。実際の重要なデータに対しては使用しないでください。
+              </li>
+              <li>
+                重要な資産を管理しているアドレスでの登録は避けてください。
+              </li>
+              <li>
+                publicKeyの登録やメッセージの送信の際にはテストネット(GoerliETH)のガス代がかかります。予めご了承ください。
+              </li>
+            </ul>
+          </div>
+
+          <!--------------------------------------------------------------------->
+          <section class="content_box">
+            <h2>ウォレットを接続し暗号化メッセージを送信する（共有、保存）</h2>
+            <div>
+              <dl>
+                <!-------------------------------------------------------->
+                <dt>publicKeyを登録する(初回のみ）</dt>
+                <dd>
+                  <!-- 映像が小さく感じるかどうかで使用の判断をする -->
+                  <a style="display: none;" href="./help_img/register.gif" data-lightbox="img-group" data-title="利用登録" data-alt="" >
+                    <img src="./help_img/register.gif" alt="GIF画像" />
+                  </a>
+                  <img src="./help_img/register.gif" alt="GIF画像" />
+                  <ol type="1">
+                    <li>[connect wallet]ボタンを押し、ウォレットを接続します。</li>
+                    <li> publicKeyをオンチェーンに登録する為の以下の要求が行われます。（初回のみ）
+                      <ol type="i">
+                        <li>ウォレットをEOA Cryptに接続する許可要求</li>
+                        <li>EOA Cryptだけで内部利用するprivateKeyおよびpublicKeyを作成する為の署名要求</li>
+                        <li>作成されたpublicKeyをオンチェーンへ保存する為のトランザクション要求</li>
+                      </ol>
+                    </li>
+                    <li>画面右上に自分のアドレスが表示されていることを確認します。</li>
+                    <li>送信先欄に自分のアドレス（省略表示にて）が表示されていることを確認します。</li>
+                    <li>緑色で表示されているログを確認します。</li>
+                  </ol>
+                  <dl class="usecase">
+                    <dt>ユースケース</dt>
+                    <dd><span>NFTマーケット</span><span>NFTマーケット</span></dd>
+                  </ul>
+                </dd>
+                <!-------------------------------------------------------->
+
+                <!-------------------------------------------------------->
+                <dt>自分しか見ることができないテキストを暗号化してIPFSに保存する</dt>
+                <dd>
+                  <img src="./help_img/sendtoself.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>画面右上に自分のアドレスが表示されていることを確認します。</li>
+                    <li>送信先欄に自分のアドレスの省略表現が表示されていることを確認します。</li>
+                    <li>[エディタ]に暗号化して保存したいテキストを入力します。</li>
+                    <li>「送信」ボタンを押し、署名を行って送信します。</li>
+                    <li>緑色で表示されているログを確認します。</li>
+                  </ol>
+                  <div class="callout">
+                    <h3>補足事項</h3>
+                    <ul>
+                      <li>「送信」ボタンを押した際に全画面で表示されるステータスと緑色のログからEtherScanのURLが確認できます。</li>
+                    </ul>
+                  </div>
+                </dd>
+                <!-------------------------------------------------------->
+
+                <!-------------------------------------------------------->
+                <dt>他人と共有したいテキストを暗号化してIPFSに保存する</dt>
+                <dd>
+                  <img src="./help_img/sendtofriends.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>画面右上に自分のアドレスが表示されていることを確認します。</li>
+                    <li>送信先欄に自分のアドレスの省略表現が表示されていることを確認します。</li>
+                    <li>送信先欄をクリックし、送信したい相手のアドレス（省略表記）を選択して送信先欄に追加します。</li>
+                    <li>[エディタ]に暗号化して共有したいテキストを入力します。</li>
+                    <li>[送信]ボタンを押し、署名を行って送信します。</li>
+                    <li>緑色で表示されているログを確認します。</li>
+                  </ol>
+                </dd>
+                <!-------------------------------------------------------->
+
+              </dl>
+            </div>
+          </section>
+          <!--------------------------------------------------------------------->
+
+          <!--------------------------------------------------------------------->
+          <section class="content_box">
+            <h2>送信（共有）された暗号化テキストを復号する</h2>
+            <div>
+              <dl>
+                <!-------------------------------------------------------->
+                <dt>自分宛の暗号テキストを復号する</dt>
+                <dd>
+                  <img src="./help_img/decryptself.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>画面右上に自分のアドレスが表示されていることを確認します。</li>
+                    <li>[受信履歴]欄まで下にスクロールします。</li>
+                    <li>[自分宛のみ]を選択します。</li>
+                    <li>[復号して表示する]をクリックします。</li>
+                    <li>復号の為の署名を行います。</li>
+                    <li>[エディタ]に復号されたテキストが表示されます。</li>
+                  </ol>                
+                </dd>
+                <!-------------------------------------------------------->
+
+                <!-------------------------------------------------------->
+                <dt>他人宛の暗号テキストの復元を試してみる</dt>
+                <dd>
+                  <img src="./help_img/decryptothers.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>画面右上に自分のアドレスが表示されていることを確認します。</li>
+                    <li>[受信履歴]欄まで下にスクロールします。</li>
+                    <li>[全ての宛先]が選択されていることを確認します。</li>
+                    <li>外枠がついていない（自分宛ではない）受信履歴を探します。</li>
+                    <li>その受信履歴の[復号して表示する]をクリックします。</li>
+                    <li>復号できない旨のアラートが表示されることを確認します。</li>
+                    <li>緑色で表示されているログを確認します。</li>
+                  </ol>                
+                </dd>
+                <!-------------------------------------------------------->
+              </dl>
+            </div>
+          </section>
+          <!--------------------------------------------------------------------->
+
+          <!--------------------------------------------------------------------->
+          <section class="content_box">
+            <h2>暗号化メッセージをファイルに保存する</h2>
+            <div>
+              <dl>
+                <!-------------------------------------------------------->
+                <dt>受信履歴からメッセージをダウンロードする</dt>
+                <dd>
+                  <img src="./help_img/download.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>
+                      画面右上に自分のアドレスが表示されていることを確認します。
+                    </li>
+                    <li>[受信履歴]欄まで下にスクロールします。</li>
+                    <li>保存したいメッセージを探します。</li>
+                    <li>その受信履歴の[ダウンロード]をクリックします。</li>
+                    <li>保存場所を選択し、ファイルとして保存します。</li>
+                  </ol>
+                </dd>
+                <!-------------------------------------------------------->
+
+                <!-------------------------------------------------------->
+                <dt>ローカルに保存したファイルをアップロードして復号する</dt>
+                <dd>
+                  <img src="./help_img/upload_decrypt.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>
+                      画面右上に自分のアドレスが表示されていることを確認します。
+                    </li>
+                    <li>
+                      [エディタ]のアップロードをクリックして復号したいファイルを選択します
+                    </li>
+                    <li>
+                      暗号化された状態のテキストが[エディタ]に表示されます。
+                    </li>
+                    <li>[エディタ内容 復号]をクリックします。</li>
+                    <li>復号の為の署名を行います。</li>
+                    <li>復号された内容を確認します。</li>
+                  </ol>
+                </dd>
+                <!-------------------------------------------------------->
+              </dl>
+            </div>
+          </section>
+          <!--------------------------------------------------------------------->
+
+          <!--------------------------------------------------------------------->
+          <section class="content_box">
+            <h2>任意のテキストを暗号化してローカルに保存する</h2>
+            <div>
+              <dl>
+                <!-------------------------------------------------------->
+                <dt>
+                  自分しか見ることができないテキストを暗号化してローカルに保存する
+                </dt>
+                <dd>
+                  <img src="./help_img/encrypt_download.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>
+                      画面右上に自分のアドレスが表示されていることを確認します。
+                    </li>
+                    <li>
+                      [エディタ]に暗号化して保存したいテキストを入力します。
+                    </li>
+                    <li>[エディタ内容 暗号化]をクリックします。</li>
+                    <li>
+                      暗号化されたことを確認し、[ダウンロード]をクリックします。
+                    </li>
+                    <li>保存場所を選択し、ファイルとして保存します。</li>
+                  </ol>
+                </dd>
+                <!-------------------------------------------------------->
+
+                <!-------------------------------------------------------->
+                <dt>他人と共有したいテキストを暗号化してローカルに保存する</dt>
+                <dd>
+                  <img
+                    src="./help_img/share_encrypt_download.gif"
+                    alt="GIF画像"
+                  />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>
+                      画面右上に自分のアドレスが表示されていることを確認します。
+                    </li>
+                    <li>
+                      送信先欄をクリックし、送信したい相手のアドレス（省略表記）を選択して送信先欄に追加します。
+                    </li>
+                    <li>
+                      [エディタ]に暗号化して共有したいテキストを入力します。
+                    </li>
+                    <li>[エディタ内容 暗号化]をクリックします。</li>
+                    <li>
+                      暗号化されたことを確認し、[ダウンロード]をクリックします。
+                    </li>
+                    <li>保存場所を選択し、ファイルとして保存します。</li>
+                  </ol>
+                </dd>
+                <!-------------------------------------------------------->
+              </dl>
+            </div>
+          </section>
+          <!--------------------------------------------------------------------->
+
+          <!--------------------------------------------------------------------->
+          <section class="content_box">
+            <h2>その他の利用方法 / Tips</h2>
+            <div>
+              <dl>
+                <!-------------------------------------------------------->
+                <dt>受信履歴からIPFS上の暗号データの内容を確認する</dt>
+                <dd>
+                  <img src="./help_img/preview_encrypted.gif" alt="GIF画像" />
+                  <ol>
+                    <li>ウォレットを接続します。</li>
+                    <li>各メッセージの[保存先]に記載されているリンクをクリックします。</li>
+                  </ol>
+                </dd>
+                <div class="callout">
+                  <h3>補足事項</h3>
+                  <ul>
+                    <li>自分宛以外の暗号データも確認することができます。</li>
+                    <li>暗号データを[エディタ]にコピペした後、[エディタ内容 復号]を使って復号することもできます。</li>
+                  </ul>
+                </div>
+                <!-------------------------------------------------------->
+
+                <!-------------------------------------------------------->
+                <dt>受信履歴からメタデータ（復号プロセス途中のJSON）の内容を確認する</dt>
+                <dd>
+                  <img src="./help_img/preview_metadata.gif" alt="GIF画像" />
+                  <ol>
+                    <li>受信履歴のメッセージの「メタデータ表示」ボタンを押す。</li>
+                    <li>お好みでエディタ上の「入力エリアを折り返す」のオン/オフを切り替えます。</li>
+                  </ol>
+                </dd>
+                <div class="callout">
+                  <h3>補足事項</h3>
+                  <ul>
+                    <li>この機能はデータ構造の理解を助けることを目的として、復号プロセスの途中経過をDemo用に表示しています。</li>
+                    <li>自分宛以外のメッセージのメタデータも確認することができます。</li>
+                    <li>メタデータを表示させた状態から、[エディタ内容 復号]を使って復号することもできます。</li>
+                  </ul>
+                </div>
+                <!-------------------------------------------------------->
+                
+                <!-------------------------------------------------------->
+                <dt>自分宛以外のメッセージの復号を試してみる</dt>
+                <dd>
+                  <img src="./help_img/dogeza_man.png" alt="PNG画像" />
+                  <ol>
+                    <li>IPFS上のテキストや[メタデータ表示]の機能を利用して得たメタデータをいじり倒して気合と根性で復号します。</li>
+                    <li>バグや脆弱性の検出にご協力ください。</li>
+                  </ol>
+                </dd>
+                <!-------------------------------------------------------->
+              </dl>
+            </div>
+          </section>
+          <!--------------------------------------------------------------------->
+          
+
+        <!--------------------------------------------------------------------->
+        </article>
+      </main>
+      <footer>
+        <div class="footer_inner">
+          <div style="position: absolute; left: 2rem">
+            <h3 class="logo">EOA Crypt</h3>
+          </div>
+          <div style="position: absolute; right: 2rem">
+            <div class="help"><a href="https://bafybeiasreuxb26b7aquirmqkp5tdlh54nbs3wb4ijskob4nhxaacwzfqi.ipfs.w3s.link/" target="_blank">Go to the Dapp</a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script>
+//--------------------------------------------------------------------
+const connectButton = document.getElementById("connectButton");
+connectButton.onclick = function () {
+  window.open(
+        "https://bafybeiasreuxb26b7aquirmqkp5tdlh54nbs3wb4ijskob4nhxaacwzfqi.ipfs.w3s.link/",
+        "_blank"
+    );
+}
+
+function isMobile() {
+  if (navigator.userAgent.match(/iPhone|iPad|Android.+Mobile/)) {
+      return true;
+    } else {
+      return false;
+  }
+}
+//--------------------------------------------------------------------
+    </script>
+  </body>
+</html>
