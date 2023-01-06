@@ -44,12 +44,6 @@
           
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
-      @import url('https://fonts.cdnfonts.com/css/alata');
-
-      @font-face {
-        font-family: 'Alata';
-        src: url('https://fonts.cdnfonts.com/css/alata');
-      }
 
       html, button, h1 {
         font-size: 62.5%;
@@ -1719,13 +1713,6 @@ receiveFilterSelf.addEventListener('change', function () {
   }
 });
 
-const helpButton = document.getElementById("helpButton");
-helpButton.onclick = function () {
-  window.open(
-    "https://ukishima.github.io/EOA-Crypt-For-Tokyo-Web3-Hackathon/docs/",
-    "help"
-  );
-}
 
 if (isMobile()) {
   const openModal = document.getElementById('openModal');
